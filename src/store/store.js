@@ -6,6 +6,7 @@ export default createStore({
     return {
       blackTheme: false,
       photosPage: 1,
+      photosQuantity: 5,
       images: "",
     };
   },
@@ -24,8 +25,8 @@ export default createStore({
     changeColorTheme(state) {
       state.blackTheme = !state.blackTheme;
     },
-    setColorTheme(state, blackTheme) {
-      state.blackTheme = blackTheme;
+    setColorTheme(state, theme) {
+      state.blackTheme = theme;
     },
     plusPhotosPage(state) {
       state.photosPage++;
@@ -39,10 +40,16 @@ export default createStore({
     setImages(state, images) {
       state.images = images;
     },
+    setPhotosQuantity(state, quantity) {
+      state.photosQuantity = quantity;
+    },
   },
   actions: {
     async loadImages() {
-      const images = await loadImages(this.state.photosPage, 5);
+      const images = await loadImages(
+        this.state.photosPage,
+        this.state.photosQuantity
+      );
       this.commit("setImages", images);
     },
   },

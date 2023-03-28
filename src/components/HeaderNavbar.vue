@@ -25,17 +25,24 @@
             </ul>
           </nav>
         </div>
-        <div class="header-navbar__item"></div>
         <div class="heade-navbar__item">
-          <select
-            class="form-select form-select-lg mb-3"
-            aria-label=".form-select-lg example"
-          >
-            <option selected>Photos</option>
-            <option value="5">five</option>
-            <option value="10">ten</option>
-            <option value="15">fifteen</option>
-          </select>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" @click="photosQuantity = 5">5</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" @click="photosQuantity = 10"
+                  >10</a
+                >
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" @click="photosQuantity = 15"
+                  >15</a
+                >
+              </li>
+            </ul>
+          </nav>
         </div>
         <div class="heade-navbar__item">
           <div class="header-navbar__switcher">
@@ -63,26 +70,35 @@ export default {
     return {
       blackTheme: false,
       photosPage: 1,
+      photosQuantity: "",
     };
   },
   methods: {
     plusPage() {
       this.photosPage++;
-      this.$store.commit("plusPhotosPage");
-      localStorage.setItem("photos-page", JSON.stringify(this.photosPage));
-      this.$store.dispatch("loadImages");
+      if (this.photosPage < 100) {
+        this.$store.commit("plusPhotosPage");
+        localStorage.setItem("photos-page", JSON.stringify(this.photosPage));
+        this.$store.dispatch("loadImages");
+      }
     },
     minusPage() {
       this.photosPage--;
-      this.$store.commit("minusPhotosPage");
-      localStorage.setItem("photos-page", JSON.stringify(this.photosPage));
-      this.$store.dispatch("loadImages");
+      if (this.photosPage > 0) {
+        this.$store.commit("minusPhotosPage");
+        localStorage.setItem("photos-page", JSON.stringify(this.photosPage));
+        this.$store.dispatch("loadImages");
+      }
     },
   },
   watch: {
     blackTheme() {
-      this.$store.commit("changeColorTheme");
       localStorage.setItem("color-theme", JSON.stringify(this.blackTheme));
+		this.$store.commit("setColorTheme", this.blackTheme);
+    },
+    photosQuantity() {
+      this.$store.commit("setPhotosQuantity", this.photosQuantity);
+      this.$store.dispatch("loadImages");
     },
   },
   created() {
@@ -91,6 +107,7 @@ export default {
     if (colorTheme) {
       let parsedColorTheme = JSON.parse(colorTheme);
       this.blackTheme = parsedColorTheme;
+      console.log(parsedColorTheme);
       this.$store.commit("setColorTheme", parsedColorTheme);
     }
 
@@ -128,17 +145,31 @@ export default {
   align-items: center;
 }
 .header-navbar__item {
-  align-self: center;
+  max-height: 100%;
+  margin: auto px;
 }
+/* bootstrap classes  */
 .mb-3,
 .my-3 {
   margin-bottom: 0px !important;
 }
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  margin-top: 15px;
+}
 
 /* black theme */
 .blackThemeBackground {
-  background-color: #7b7872;
+  background-color: #a4a18e;
   color: #fff;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #7e7874;
 }
 </style>

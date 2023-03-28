@@ -1,8 +1,17 @@
 <template>
-  <div class="image-carousel">
+  <div
+    class="image-carousel"
+    :class="{
+      blackThemeBackground: $store.getters.getColorTheme,
+    }"
+  >
     <div class="image-carousel__body">
       <div class="image">
-        <span class="image__body" v-for="image in $store.getters.getImages" :key="image">
+        <span
+          class="image__body"
+          v-for="image in $store.getters.getImages"
+          :key="image"
+        >
           <img :src="image.download_url" alt="random image" />
         </span>
       </div>
@@ -11,8 +20,6 @@
 </template>
 
 <script>
-
-
 export default {
   data: () => {
     return {
@@ -32,15 +39,20 @@ export default {
 
 <style scoped>
 .image-carousel {
-  margin: 20px 0px;
-  padding: 0px 30px;
+  padding: 20px 30px;
 }
 .image {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 .image__body img {
-  height: 200px;
+  height: 300px;
+}
+
+/* black theme */
+.blackThemeBackground {
+  background-color: #e1e2e3;
 }
 </style>

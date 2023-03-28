@@ -11,11 +11,8 @@
 
 <style scoped>
 .footer-navbar {
-  padding-bottom: 100%;
-  /* height:100%; */
+  min-height: 40px;
   border-top: 1px solid #e2e2e2;
-}
-.footer-navbar__body {
 }
 
 /* black theme */

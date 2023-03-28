@@ -50,7 +50,10 @@ export default createStore({
         this.state.photosPage,
         this.state.photosQuantity
       );
-      this.commit("setImages", images);
+      const FilteredImages = images.filter(
+        (t) => t.width / t.height < 1.7 && t.height / t.width < 1
+      );
+      this.commit("setImages", FilteredImages);
     },
   },
 });

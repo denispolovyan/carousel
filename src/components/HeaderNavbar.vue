@@ -29,16 +29,16 @@
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item">
-                <a class="page-link" href="#" @click="photosQuantity = 5">5</a>
+                <a class="page-link" href="#" @click="photosQuantity = 5">+</a>
               </li>
               <li class="page-item">
                 <a class="page-link" href="#" @click="photosQuantity = 10"
-                  >10</a
+                  >++</a
                 >
               </li>
               <li class="page-item">
                 <a class="page-link" href="#" @click="photosQuantity = 15"
-                  >15</a
+                  >+++</a
                 >
               </li>
             </ul>
@@ -53,9 +53,7 @@
                 class="custom-control-input"
                 id="customSwitches"
               />
-              <label class="custom-control-label" for="customSwitches"
-                >{{ blackTheme ? "Black" : "White" }} theme</label
-              >
+              <label class="custom-control-label" for="customSwitches"></label>
             </div>
           </div>
         </div>
@@ -94,7 +92,7 @@ export default {
   watch: {
     blackTheme() {
       localStorage.setItem("color-theme", JSON.stringify(this.blackTheme));
-		this.$store.commit("setColorTheme", this.blackTheme);
+      this.$store.commit("setColorTheme", this.blackTheme);
     },
     photosQuantity() {
       this.$store.commit("setPhotosQuantity", this.photosQuantity);
@@ -107,7 +105,6 @@ export default {
     if (colorTheme) {
       let parsedColorTheme = JSON.parse(colorTheme);
       this.blackTheme = parsedColorTheme;
-      console.log(parsedColorTheme);
       this.$store.commit("setColorTheme", parsedColorTheme);
     }
 
@@ -148,6 +145,15 @@ export default {
   max-height: 100%;
   margin: auto px;
 }
+.header-navbar__switcher {
+  border: 1px solid #e2e7ea;
+  padding: 0px 5px 0px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  height: 33px;
+  background-color: #fff;
+}
 /* bootstrap classes  */
 .mb-3,
 .my-3 {
@@ -169,7 +175,26 @@ section {
 /* black theme */
 .blackThemeBackground {
   background-color: #a4a18e;
-  color: #fff;
+  color: #000;
   border-bottom: 1px solid #7e7874;
+}
+
+/* adaptive */
+@media (max-width: 700px) {
+  .header-navbar__logo img {
+    height: 50px;
+    width: 50px;
+  }
+  .header-navbar {
+    padding: 0px 10px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  .header-navbar__list {
+    display: flex;
+    gap: 5px;
+  }
+  .header-navbar__switcher {
+    border-radius: 5px;
+  }
 }
 </style>

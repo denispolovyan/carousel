@@ -19,12 +19,12 @@ export default {
 @import url("./assets/css/nullstyle.css");
 
 #app {
-  height: 100%;
+  height: 100vh;
 }
 .wrapper {
-  height: 100%;
+  height: 100vh;
 }
 main {
-  height: 100%;
+  height: 100vh;
 }
 </style>

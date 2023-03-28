@@ -2,7 +2,7 @@
   <div class="image-gallery">
     <header-navbar />
     <image-carousel />
-    <footer-navbar />
+    <footer-navbar class="footer-navbar" />
   </div>
 </template>
 
@@ -19,3 +19,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.footer-navbar {
+  flex-grow: 1;
+}
+</style>

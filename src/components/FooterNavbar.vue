@@ -5,15 +5,32 @@
       blackThemeBackground: $store.getters.getColorTheme,
     }"
   >
-    <div class="footer-navbar__body"></div>
+    <div class="footer-navbar__body">
+      <selected-image-carousel />
+    </div>
   </div>
 </template>
+
+<script>
+import SelectedImageCarousel from "./SelectedImageCarousel.vue";
+export default {
+  components: {
+    SelectedImageCarousel,
+  },
+};
+</script>
 
 <style scoped>
 .footer-navbar {
   min-height: 40px;
   border-top: 1px solid #e2e2e2;
 }
+/* .footer-navbar__image {
+  text-align: center;
+  margin: 40px 0px;
+  margin: 0px auto;
+  max-width: 100%;
+} */
 
 /* black theme */
 .blackThemeBackground {

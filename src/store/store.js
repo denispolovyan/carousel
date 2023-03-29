@@ -8,6 +8,7 @@ export default createStore({
       photosPage: 1,
       photosQuantity: 5,
       images: "",
+      selectedImages: [],
     };
   },
   getters: {
@@ -19,6 +20,9 @@ export default createStore({
     },
     getImages(state) {
       return state.images;
+    },
+    getSelectedImages(state) {
+      return state.selectedImages;
     },
   },
   mutations: {
@@ -42,6 +46,15 @@ export default createStore({
     },
     setPhotosQuantity(state, quantity) {
       state.photosQuantity = quantity;
+    },
+    addSelectedImage(state, image) {
+      state.selectedImages.push(image);
+    },
+    setSelectedImages(state, images) {
+      state.selectedImages = images;
+    },
+    deleteSelectedImage(state, image) {
+      state.selectedImages = state.selectedImages.filter((t) => t != image);
     },
   },
   actions: {

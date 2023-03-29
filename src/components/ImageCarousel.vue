@@ -11,6 +11,7 @@
           v-for="image in $store.getters.getImages"
           :key="image"
           style="padding: 20px; text-align: center"
+          @click="addImage(image.download_url)"
           ><img class="image" :src="image.download_url" alt="random image"
         /></swiper-slide>
         ...
@@ -46,10 +47,18 @@ export default {
       this.clientWidth < 1500 ? (this.previewSlide = 2) : null;
       this.clientWidth < 1000 ? (this.previewSlide = 1) : null;
     },
+    addImage(url) {
+      this.$store.commit("addSelectedImage", url);
+      localStorage.setItem(
+        "selected-images",
+        JSON.stringify(this.$store.getters.getSelectedImages)
+      );
+    },
   },
   created() {
     this.loadImages();
     this.getWindowSize();
+
   },
   mounted() {
     window.removeEventListener("resize", this.getWindowSize);
@@ -70,7 +79,6 @@ export default {
   text-align: center;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  
 }
 
 /* black theme */

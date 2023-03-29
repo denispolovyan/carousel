@@ -1,16 +1,16 @@
 <template>
   <div class="wrapper">
-    <image-gallery />
+    <gallery-app />
   </div>
 </template>
 
 <script>
-import ImageGallery from "./components/ImageGallery.vue";
+import GalleryApp from "./components/GalleryApp.vue";
 
 export default {
   name: "App",
   components: {
-    ImageGallery,
+    GalleryApp,
   },
 };
 </script>

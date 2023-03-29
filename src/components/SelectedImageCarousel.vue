@@ -1,16 +1,30 @@
 <template>
-  <div class="selected-image-carousel">
+  <div
+    class="selected-image-carousel"
+    :class="{
+      blackThemeBackground: $store.getters.getColorTheme,
+    }"
+  >
     <div class="selected-image-carousel__body">
-      <swiper :slides-per-view="previewSlide" :space-between="20">
+      <swiper :slides-per-view="previewSlide" :space-between="10">
         <swiper-slide
+          style="padding: 20px; text-align: center"
           v-for="image in $store.getters.getSelectedImages"
           :key="image"
-          style="text-align: center"
           @click="deleteImage(image)"
           ><img class="image" :src="image" alt="random image"
         /></swiper-slide>
         ...
       </swiper>
+      <div
+        class="footer-navbar__counter"
+        v-if="$store.getters.getSelectedImages.length"
+        :class="{
+          blackThemeCounter: $store.getters.getColorTheme,
+        }"
+      >
+        {{ $store.getters.getSelectedImages.length }}
+      </div>
     </div>
   </div>
 </template>
@@ -44,7 +58,6 @@ export default {
       this.clientWidth < 900 ? (this.previewSlide = 4) : null;
       this.clientWidth < 850 ? (this.previewSlide = 3) : null;
       this.clientWidth < 550 ? (this.previewSlide = 2) : null;
-      this.clientWidth < 400 ? (this.previewSlide = 1) : null;
     },
   },
   created() {
@@ -75,6 +88,30 @@ export default {
   height: 100px;
   text-align: center;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+}
+
+.footer-navbar__counter {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+/* adaptive  */
+@media (max-width: 700px) {
+  .selected-image-carousel {
+    padding: 40px 10px;
+  }
+}
+/* black theme */
+.blackThemeBackground {
+  background-color: #a4a18e;
+}
+.blackThemeCounter {
+  background-color: #e1e2e3;
 }
 </style>

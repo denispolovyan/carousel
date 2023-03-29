@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import HeaderNavbar from "../components/HeaderNavbar.vue";
-import FooterNavbar from "../components/FooterNavbar.vue";
-import ImageCarousel from "../components/ImageCarousel.vue";
+import HeaderNavbar from "./HeaderNavbar.vue";
+import FooterNavbar from "./FooterNavbar.vue";
+import ImageCarousel from "./ImageCarousel.vue";
 
 export default {
   components: {

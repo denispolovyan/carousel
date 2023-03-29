@@ -8,11 +8,15 @@
     <div class="image-carousel__body">
       <swiper :slides-per-view="previewSlide" :space-between="20">
         <swiper-slide
+          class="image-carousel__slider"
           v-for="image in $store.getters.getImages"
           :key="image"
           style="padding: 20px; text-align: center"
-          @click="addImage(image.download_url)"
-          ><img class="image" :src="image.download_url" alt="random image"
+          ><img
+            class="image"
+            :src="image.download_url"
+            alt="random image"
+            @click="addImage(image.download_url)"
         /></swiper-slide>
         ...
       </swiper>
@@ -45,7 +49,7 @@ export default {
       this.clientWidth > 1750 ? (this.previewSlide = 3) : null;
       this.clientWidth > 2000 ? (this.previewSlide = 4) : null;
       this.clientWidth < 1500 ? (this.previewSlide = 2) : null;
-      this.clientWidth < 1000 ? (this.previewSlide = 1) : null;
+      this.clientWidth < 1050 ? (this.previewSlide = 1) : null;
     },
     addImage(url) {
       this.$store.commit("addSelectedImage", url);
@@ -72,8 +76,6 @@ export default {
 .image-carousel {
   height: 420px;
   padding: 40px 30px;
-  background-color: #e1e2e3;
-
 }
 
 .image {
@@ -82,21 +84,24 @@ export default {
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.image-carousel__slider {
+  position: relative;
+}
 
 /* black theme */
 .blackThemeBackground {
   background-color: #e1e2e3;
 }
+
 @media (max-width: 700px) {
   .image {
-	/* display: flex;
-	flex-direction: column;
-	align-items: center; */
-    height: 380px;
-    width: auto;
+    height: 240px;
+    max-width: 320px;
   }
   .image-carousel {
-    height: 500px;
+    height: 360px;
+    height: auto;
+    padding: 40px 10px;
   }
 }
 </style>

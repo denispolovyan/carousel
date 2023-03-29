@@ -48,7 +48,8 @@ export default createStore({
       state.photosQuantity = quantity;
     },
     addSelectedImage(state, image) {
-      state.selectedImages.push(image);
+      const coincidence = state.selectedImages.filter((t) => t == image);
+      !coincidence.length ? state.selectedImages.push(image) : null;
     },
     setSelectedImages(state, images) {
       state.selectedImages = images;

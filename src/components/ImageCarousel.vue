@@ -58,7 +58,6 @@ export default {
   created() {
     this.loadImages();
     this.getWindowSize();
-
   },
   mounted() {
     window.removeEventListener("resize", this.getWindowSize);
@@ -71,7 +70,10 @@ export default {
 
 <style scoped>
 .image-carousel {
+  height: 420px;
   padding: 40px 30px;
+  background-color: #e1e2e3;
+
 }
 
 .image {
@@ -87,10 +89,14 @@ export default {
 }
 @media (max-width: 700px) {
   .image {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-self: center;
+	/* display: flex;
+	flex-direction: column;
+	align-items: center; */
+    height: 380px;
+    width: auto;
+  }
+  .image-carousel {
+    height: 500px;
   }
 }
 </style>
